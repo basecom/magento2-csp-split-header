@@ -1,0 +1,7 @@
+"Approximate header size (Bytes)","Approximate header size (Bytes)"
+"Usage of maximum size","Usage of maximum size"
+"Current CSP Header","Current CSP Header"
+"Maximum Header Size in Bytes","Maximum Header Size in Bytes"
+"Enable Header Splitting for CSP","Enable Header Splitting for CSP"
+"Content Security Policy","Content Security Policy"
+"Warning! Header size exceeds limits! Header is truncated!","Warning! Header size exceeds limits! Header is truncated!"

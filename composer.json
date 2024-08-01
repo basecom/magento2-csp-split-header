@@ -1,0 +1,30 @@
+{
+    "name": "basecom/magento2-csp-split-header",
+    "version": "1.0.0",
+    "description": "N/A",
+    "type": "magento2-module",
+    "license": [
+        "MIT"
+    ],
+    "authors": [
+        {
+            "name": "Team Magento @basecom",
+            "email": "magento@basecom.de"
+        }
+    ],
+    "require": {
+        "php": "~8.1",
+        "magento/framework": "*",
+        "magento/module-csp": "*",
+        "magento/module-config": "*",
+        "magento/module-backend": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Basecom\\CspSplitHeader\\": ""
+        }
+    }
+}

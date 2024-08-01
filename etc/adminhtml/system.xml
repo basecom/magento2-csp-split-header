@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="basecom_csp_split_header" translate="label" showInDefault="1" showInWebsite="1" showInStore="1"
+                 sortOrder="1000">
+            <label>Content Security Policy</label>
+            <tab>basecom</tab>
+            <resource>Basecom_CspSplitHeader::settings</resource>
+            <group id="settings" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                <label>Enable</label>
+                <field id="header_splitting_enable" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Header Splitting for CSP</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>When activated, each CSP directive is served in its own header.</comment>
+                </field>
+                <field id="max_header_size" translate="label" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Maximum Header Size in Bytes</label>
+                </field>
+                <field id="csp_header" translate="label" type="note" sortOrder="30" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Current CSP Header</label>
+                    <frontend_model>Basecom\CspSplitHeader\Block\Adminhtml\Form\Field\CspHeader</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
+
