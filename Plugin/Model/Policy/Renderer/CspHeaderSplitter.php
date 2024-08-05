@@ -53,7 +53,7 @@ class CspHeaderSplitter
 
         if ($isHeaderSplittingEnabled) {
             $this->registerCspHeaderPlugins($response);
-            $this->splitUpCspHeaders($response, $policy->getId(), $policyValue);
+            $this->splitUpCspHeaders($response, $policyValue);
         } else {
             if ($maxHeaderSize >= $currentHeaderSize) {
                 $response->setHeader($headerName, $policyValue, true);
@@ -87,7 +87,7 @@ class CspHeaderSplitter
     /**
      * Make sure that the CSP headers are handled as several headers ("multi-header")
      */
-    private function splitUpCspHeaders(HttpResponse $response, string $policyId, string $policyValue): void
+    private function splitUpCspHeaders(HttpResponse $response, string $policyValue): void
     {
         $headerName = $this->getHeaderName($response);
 
@@ -95,12 +95,11 @@ class CspHeaderSplitter
             return;
         }
 
-        $newHeader = $policyId.' '.$policyValue.';';
         $maxHeaderSize = $this->config->getMaxHeaderSize();
         $newHeaderSize = strlen($policyValue);
 
         if ($newHeaderSize <= $maxHeaderSize) {
-            $this->contentHeaders[] = $newHeader;
+            $this->contentHeaders[] = $policyValue;
         } else {
             $this->logger->error(
                 sprintf(
