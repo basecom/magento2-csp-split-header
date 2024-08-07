@@ -1,0 +1,19 @@
+name: Create Tag
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v4
+            -   uses: butlerlogic/action-autotag@1.1.2
+                env:
+                    GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+                with:
+                    regex_pattern: '"version": "([0-9\.]{5}([-\+][\w\.0-9]+)?)"'
+                    root: "composer.json"
+                    tag_prefix: "v"
