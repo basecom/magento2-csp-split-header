@@ -1,7 +1,8 @@
 # Basecom_CspSplitHeader Magento 2 Module
 
-<div style="text-align: center;">
+<div align="center">
 
+[![Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE)
 ![Supported Magento Versions][ico-compatibility]
 
@@ -85,6 +86,8 @@ The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
 &copy; 2024 basecom GmbH & Co. KG
 
+[ico-version]: https://img.shields.io/packagist/v/basecom/magento2-csp-split-header.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-
 [ico-compatibility]: https://img.shields.io/badge/magento-2.4-brightgreen.svg?logo=magento&longCache=true&style=flat-square
+
+[link-packagist]: https://packagist.org/packages/basecom/magento2-csp-split-header
