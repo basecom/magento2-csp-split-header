@@ -1,6 +1,6 @@
 {
     "name": "basecom/magento2-csp-split-header",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Magento 2 module to split oversized CSP headers into multiple headers.",
     "type": "magento2-module",
     "license": [

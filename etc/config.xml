@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
         <basecom_csp_split_header>
             <settings>
                 <header_splitting_enable>0</header_splitting_enable>
-                <max_header_size>8000</max_header_size>
+                <max_header_size>8190</max_header_size>
             </settings>
         </basecom_csp_split_header>
     </default>

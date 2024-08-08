@@ -50,7 +50,7 @@ no longer exceed the maximum permitted length of the web server.
 | Config                                                      | Default Value  | Description                                                |
 |-------------------------------------------------------------|----------------|------------------------------------------------------------|
 | `basecom_csp_split_header/settings/header_splitting_enable` | 0 _(disabled)_ | enables (1) / disables (0) the splitting of the CSP header |
-| `basecom_csp_split_header/settings/max_header_size`         | 8000           | maximum allowed header size                                |
+| `basecom_csp_split_header/settings/max_header_size`         | 8190           | maximum allowed header field size                          |
 
 These values can be updated in the system configuration under `Basecom -> Content Security Policy -> Enable`.
 
