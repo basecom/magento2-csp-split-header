@@ -3,7 +3,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-           <tab id="basecom" translate="label" sortOrder="210">
+        <tab id="basecom" translate="label" sortOrder="410">
             <label>Basecom</label>
         </tab>
         <section id="basecom_csp_split_header" translate="label" showInDefault="1" showInWebsite="1" showInStore="1"
