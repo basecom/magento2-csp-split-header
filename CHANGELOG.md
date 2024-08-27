@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+## [1.0.5] - 2024-08-27
+
+### Added
+
+- Added missing tab ID in system.xml (#3). [@eneskirca](https://github.com/eneskirca)
+
 ## [1.0.4] - 2024-08-08
 
 ### Changed
@@ -25,13 +31,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Added GitHub action to automatically set tag
+- Added GitHub action to automatically set tag.
 
 ## [1.0.2] - 2024-08-05
 
 ### Added
 
-- Added README
+- Added README.
 
 ## [1.0.1] - 2024-08-02
 
@@ -41,6 +47,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.0.0] - 2024-08-02
 
+[1.0.5: https://github.com/basecom/magento2-csp-split-header/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/basecom/magento2-csp-split-header/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/basecom/magento2-csp-split-header/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/basecom/magento2-csp-split-header/compare/v1.0.1...v1.0.2
