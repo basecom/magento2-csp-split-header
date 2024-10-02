@@ -3,7 +3,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Basecom\CspSplitHeader\Api\Data\ConfigInterface" type="Basecom\CspSplitHeader\Model\Config"/>
 
-    <type name="Magento\Csp\Model\Policy\Renderer\SimplePolicyHeaderRenderer">
+    <type name="Magento\Csp\Api\CspRendererInterface">
         <plugin name="basecomCspHeaderSplitter"
                 type="Basecom\CspSplitHeader\Plugin\Model\Policy\Renderer\CspHeaderSplitter"
                 sortOrder="5"/>
