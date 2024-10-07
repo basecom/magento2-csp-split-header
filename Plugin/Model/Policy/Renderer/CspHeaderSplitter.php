@@ -10,7 +10,7 @@ use Laminas\Http\Header\ContentSecurityPolicyReportOnly;
 use Laminas\Http\Header\HeaderInterface;
 use Laminas\Loader\PluginClassLoader;
 use Magento\Csp\Api\Data\PolicyInterface;
-use Magento\Csp\Model\Policy\Renderer\SimplePolicyHeaderRenderer;
+use Magento\Csp\Model\CspRenderer;
 use Magento\Framework\App\Response\HttpInterface as HttpResponse;
 use Psr\Log\LoggerInterface;
 
@@ -37,26 +37,28 @@ class CspHeaderSplitter
      * @param null $result
      */
     public function afterRender(
-        SimplePolicyHeaderRenderer $subject,
+        CspRenderer $subject,
         $result,
-        PolicyInterface $policy,
         HttpResponse $response
     ): void {
         $headerName = $this->getHeaderName($response);
-        /** @var HeaderInterface $header */
         $header = $response->getHeader($headerName);
-        $policyValue = $header->getFieldValue();
+        if (!$header instanceof HeaderInterface) {
+            return;
+        }
+
+        $headerValue = $header->getFieldValue();
         $isHeaderSplittingEnabled = $this->config->isHeaderSplittingEnabled();
 
         $maxHeaderSize = $this->config->getMaxHeaderSize();
-        $currentHeaderSize = strlen($policyValue);
+        $currentHeaderSize = strlen($headerValue);
 
         if ($isHeaderSplittingEnabled) {
             $this->registerCspHeaderPlugins($response);
-            $this->splitUpCspHeaders($response, $policyValue);
+            $this->splitUpCspHeaders($response, $headerName, $headerValue);
         } else {
             if ($maxHeaderSize >= $currentHeaderSize) {
-                $response->setHeader($headerName, $policyValue, true);
+                $response->setHeader($headerName, $headerValue, true);
             } else {
                 $this->logger->error(
                     sprintf(
@@ -87,33 +89,41 @@ class CspHeaderSplitter
     /**
      * Make sure that the CSP headers are handled as several headers ("multi-header")
      */
-    private function splitUpCspHeaders(HttpResponse $response, string $policyValue): void
+    private function splitUpCspHeaders(HttpResponse $response, string $headerName, string $headerValue): void
     {
-        $headerName = $this->getHeaderName($response);
-
-        if (!$headerName) {
-            return;
-        }
-
         $maxHeaderSize = $this->config->getMaxHeaderSize();
-        $newHeaderSize = strlen($policyValue);
 
-        if ($newHeaderSize <= $maxHeaderSize) {
-            $this->contentHeaders[] = $policyValue;
-        } else {
-            $this->logger->error(
-                sprintf(
-                    'Unable to set the CSP header. The header size of %d bytes exceeds the '.
-                    'maximum size of %d bytes.',
-                    $newHeaderSize,
-                    $maxHeaderSize
-                )
-            );
+        $headerParts[$i = 0] = '';
+
+        $policyValues = explode(';', $headerValue);
+        foreach ($policyValues as $policyValue) {
+            $policyValue = trim($policyValue) . ';';
+            $newHeaderSize = strlen($headerParts[$i]) + strlen($policyValue);
+
+            if ($newHeaderSize <= $maxHeaderSize) {
+                $headerParts[$i] .= $policyValue;
+
+                continue;
+            }
+
+            $headerParts[++$i] = $policyValue;
+            $headerSize = strlen($policyValue);
+            if ($headerSize > $maxHeaderSize) {
+                $this->logger->error(
+                    sprintf(
+                        'Unable to set the CSP header. The header size of %d bytes exceeds the '.
+                        'maximum size of %d bytes.',
+                        $headerSize,
+                        $maxHeaderSize
+                    )
+                );
+
+                return;
+            }
         }
 
-        foreach ($this->contentHeaders as $i => $headerPart) {
-            $isFirstEntry = ($i === 0);
-            $response->setHeader($headerName, $headerPart.';', $isFirstEntry);
+        foreach ($headerParts as $i => $headerPart) {
+            $response->setHeader($headerName, $headerPart.';', $i === 0);
         }
     }
 
