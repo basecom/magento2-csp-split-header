@@ -15,6 +15,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+## [1.0.7] - 2025-03-24
+
+### Added
+
+- Added `Known issues` section in the README
+
+### Changed
+
+- Changed the default value of `basecom_csp_split_header/settings/max_header_size` from 8190 to 8000.
+
 ## [1.0.6] - 2024-10-07
 
 ### Fixed
@@ -53,6 +63,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.0.0] - 2024-08-02
 
+[1.0.7]: https://github.com/basecom/magento2-csp-split-header/compare/v1.0.6...v1.0.7
 [1.0.6]: https://github.com/basecom/magento2-csp-split-header/compare/v1.0.5...v1.0.6
 [1.0.5]: https://github.com/basecom/magento2-csp-split-header/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/basecom/magento2-csp-split-header/compare/v1.0.3...v1.0.4

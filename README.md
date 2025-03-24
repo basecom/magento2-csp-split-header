@@ -50,7 +50,7 @@ no longer exceed the maximum permitted length of the web server.
 | Config                                                      | Default Value  | Description                                                |
 |-------------------------------------------------------------|----------------|------------------------------------------------------------|
 | `basecom_csp_split_header/settings/header_splitting_enable` | 0 _(disabled)_ | enables (1) / disables (0) the splitting of the CSP header |
-| `basecom_csp_split_header/settings/max_header_size`         | 8190           | maximum allowed header field size                          |
+| `basecom_csp_split_header/settings/max_header_size`         | 8000           | maximum allowed header field size                          |
 
 These values can be updated in the system configuration under `Basecom -> Content Security Policy -> Enable`.
 
@@ -69,6 +69,16 @@ These values can be updated in the system configuration under `Basecom -> Conten
     Content-Security-Policy: connect-src 'none'; 
     Content-Security-Policy: script-src https://example.com/;                          
     ```
+
+## Known Issues
+
+### CSP header is not split correctly ([#5](https://github.com/basecom/magento2-csp-split-header/issues/5))
+
+Lower the maximum allowed header field size threshold in the config `basecom_csp_split_header/settings/max_header_size`.
+
+### Varnish 503 error ([#7](https://github.com/basecom/magento2-csp-split-header/issues/7))
+
+Increase the Varnish header size`http_resp_hdr_len`. The default value is 8kb.
 
 ## Contributing
 
